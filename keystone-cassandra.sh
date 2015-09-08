@@ -49,7 +49,7 @@ ccm node1 cqlsh -f others/prerun.cql
 ccm node1 cqlsh -f others/table-creation.cql
 ccm node1 cqlsh -f others/keystonedbdump.cql
 
-sudo apt-get install build-essential python-dev libev4 libev-dev
+sudo apt-get install -y build-essential python-dev libev4 libev-dev
 
 # HACK: installing cassandra-driver pip package will fail with some setuptools
 # error. This is because devstack uses a custom version of pip. Here we will
@@ -61,16 +61,17 @@ sudo apt-get install build-essential python-dev libev4 libev-dev
 # dependencies of Ubuntu's pip as it is.
 # TODO(rushiagr): Don't use this workaround and only install that one Ubuntu
 # package which fixes this issue. python-setuptools?
-sudo apt-get install python-pip
-sudo apt-get remove python-pip python-six
+sudo apt-get install -y python-pip
+sudo apt-get remove -y python-pip python-six
 
-sudo pip install cassandra-driver=2.5.1
+sudo pip install cassandra-driver==2.5.1
 sudo pip install blist
 
 sudo python setup.py install
 
 sudo service apache2 restart
 
+cd -
 cd ..
 source devstack/openrc
 
