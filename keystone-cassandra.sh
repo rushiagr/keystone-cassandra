@@ -1,3 +1,6 @@
+#! /bin/bash
+set -x
+
 sudo apt-get -y install git
 
 git clone https://github.com/openstack-dev/devstack
